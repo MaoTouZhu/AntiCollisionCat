@@ -1,4 +1,5 @@
-﻿namespace AntiCollisionCat
+﻿global using Real = float;
+namespace AntiCollisionCat
 {
     public static class Global
     {

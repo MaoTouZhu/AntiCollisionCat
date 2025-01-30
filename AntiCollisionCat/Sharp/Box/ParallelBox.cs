@@ -8,11 +8,16 @@ namespace AntiCollisionCat.Sharp
     /// </summary>
     public class ParallelBox : IBox
     {
-        public Vector Halfize => throw new NotImplementedException();
+        public ParallelBox(Vector halfize, Matrix3 center, Matrix3 direction)
+        {
+            Halfize = halfize;
+            Center = center;
+            Direction = direction;
+        }
+        public Vector Halfize { get; set; }
 
-        public Matrix3 Center => throw new NotImplementedException();
-
-        public Matrix3 Direction => throw new NotImplementedException();
+        public Matrix3 Center { get; set; }
+        public Matrix3 Direction { get; set; }
 
         public string Name => throw new NotImplementedException();
 

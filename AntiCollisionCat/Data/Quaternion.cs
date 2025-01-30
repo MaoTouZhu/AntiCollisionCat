@@ -3,7 +3,7 @@
     /// <summary>
     /// 四元数
     /// </summary>
-    public class Quaternion
+    public struct Quaternion
     {
         public double X { get; set; }
         public double Y { get; set; }
