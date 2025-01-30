@@ -1,11 +1,4 @@
-﻿global using Real = System.Single;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AntiCollisionCat
+﻿namespace AntiCollisionCat
 {
     public static class Global
     {

@@ -1,10 +1,4 @@
-﻿using AntiCollisionCat.Data;
-using AntiCollisionCat.Sharp.Cylinder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AntiCollisionCat.Sharp.Cylinder;
 
 namespace AntiCollisionCat.Sharp
 {
