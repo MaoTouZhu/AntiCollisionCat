@@ -1,4 +1,5 @@
 ﻿using AntiCollisionCat.API;
+using AntiCollisionCat.LinearMath;
 
 namespace AntiCollisionCat.Sharp.Box
 {
@@ -10,6 +11,6 @@ namespace AntiCollisionCat.Sharp.Box
         /// <summary>
         /// 盒子尺寸, 半值
         /// </summary>
-        Data.Vector Halfize { get; set; }
+        JVector Halfize { get; set; }
     }
 }

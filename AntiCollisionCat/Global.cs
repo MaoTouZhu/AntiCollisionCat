@@ -1,9 +1,4 @@
-﻿//global using Real = double; 高精度要求
-//global using Real = System.Half; 低精度要求(不建议, Half在10的4次方数量级上无小数精度, 10的3次方数量级上仅有一位有效小数)
-//
-global using Real = float; //常规精度要求, 综合了精度和性能
-
-namespace AntiCollisionCat
+﻿namespace AntiCollisionCat
 {
     public static class Global
     {
