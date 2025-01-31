@@ -11,4 +11,8 @@
     <Folder Include="Sharp\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Jitter2\Jitter2.csproj" />
+  </ItemGroup>
+
 </Project>
