@@ -1,7 +1,15 @@
-﻿namespace AntiCollisionCat
+﻿global using Real = System.Single;
+
+namespace AntiCollisionCat
 {
+    /// <summary>
+    /// 全局
+    /// </summary>
     public static class Global
     {
+        /// <summary>
+        /// 目标TPS
+        /// </summary>
         public static float TargetTPS { get; internal set; }
 
         /// <summary>

@@ -5,6 +5,9 @@
     /// </summary>
     public interface IHasName
     {
+        /// <summary>
+        /// 名称
+        /// </summary>
         string Name { get; }
     }
 }
