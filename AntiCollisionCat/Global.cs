@@ -10,7 +10,7 @@ namespace AntiCollisionCat
         /// <summary>
         /// 目标TPS
         /// </summary>
-        public static float TargetTPS { get; internal set; }
+        public static float TargetTPS { get; internal set; } = 20f;
 
         /// <summary>
         /// 目标每秒 Tick 数, 默认 50

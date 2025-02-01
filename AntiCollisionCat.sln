@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiCollisionCatPlayGround", "AntiCollisionCatPlayGround\AntiCollisionCatPlayGround.csproj", "{36FB047B-2F1C-4D31-BD93-2C6E0838E5EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{5307B82A-F9FC-4142-BF2E-B4AAC94DF5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5307B82A-F9FC-4142-BF2E-B4AAC94DF5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5307B82A-F9FC-4142-BF2E-B4AAC94DF5CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36FB047B-2F1C-4D31-BD93-2C6E0838E5EA}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{36FB047B-2F1C-4D31-BD93-2C6E0838E5EA}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{36FB047B-2F1C-4D31-BD93-2C6E0838E5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36FB047B-2F1C-4D31-BD93-2C6E0838E5EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
