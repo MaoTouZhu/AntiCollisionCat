@@ -45,7 +45,7 @@ namespace Test
             RigidBodyShape boxShape1 = new BoxShape(1.0f, 1.0f, 1.0f);
             RigidBody body1 = world.CreateRigidBody();
             body1.AddShape(boxShape1);
-            body1.Position = new JVector(-1000.0f, 0.0f, 0.0f);
+            body1.Position = new JVector(-300.0f, 0.0f, 0.0f);
             body1.Velocity = new JVector(1000.0f, 0.0f, 0.0f);
             body1.Friction = 0.0f;
             body1.Restitution = 0.0f;
@@ -57,7 +57,7 @@ namespace Test
             RigidBodyShape boxShape2 = new BoxShape(1.0f, 1.0f, 1.0f);
             RigidBody body2 = world.CreateRigidBody();
             body2.AddShape(boxShape2);
-            body2.Position = new JVector(0.0f, -1000.0f, 0.0f);
+            body2.Position = new JVector(0.0f, -300.0f, 0.0f);
             body2.Velocity = new JVector(0.0f, 1000.0f, 0.0f);
             body2.Friction = 0.0f;
             body2.Restitution = 0.0f;
@@ -67,13 +67,13 @@ namespace Test
 
 
             var start = Stopwatch.StartNew();
-            int TPS = 30;
+            int TPS = 20;
             float dt = 1f / TPS;
 
             // 运行模拟
             for (int i = 0; i < 500; i++)
             {
-                world.Step(dt,false); //步进
+                world.Step(dt, false); //步进
                 Console.WriteLine($"Step {i + 1}:");
                 Console.WriteLine($"X轴 Position: {body1.Position}");
                 Console.WriteLine($"Y轴 Position: {body2.Position}\r\n");

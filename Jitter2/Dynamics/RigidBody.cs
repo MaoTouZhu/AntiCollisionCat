@@ -21,15 +21,15 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Jitter2.Collision;
 using Jitter2.Collision.Shapes;
 using Jitter2.DataStructures;
 using Jitter2.Dynamics.Constraints;
 using Jitter2.LinearMath;
 using Jitter2.UnmanagedMemory;
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Jitter2.Dynamics;
 
@@ -99,6 +99,15 @@ public struct RigidBodyData
 /// </summary>
 public sealed class RigidBody : IPartitionedSetIndex, IDebugDrawable
 {
+    /// <summary>
+    /// 默认构造一个新的刚体
+    /// </summary>
+    /// <param name="name"></param>
+    public RigidBody(string name = "null")
+    {
+        Name = name;
+    }
+    public string Name { get; set; }
     internal JHandle<RigidBodyData> handle;
 
     /// <summary>

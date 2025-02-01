@@ -3,88 +3,109 @@ using Jitter2;
 using Jitter2.Collision.Shapes;
 using Jitter2.Dynamics;
 using Jitter2.LinearMath;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace AntiCollisionCat
 {
     /// <summary>
-    /// 
+    /// 模拟世界
     /// </summary>
-    public class SimulateWorld
+    public class SimulateWorld : IHasName
     {
+        /// <summary>
+        /// 默认世界
+        /// </summary>
+        public SimulateWorld(string name)
+        {
+            Name = name;
+            World = GetDefaltWorld();
+        }
+
         /// <summary>
         /// 内部世界
         /// </summary>
         public World World { get; protected set; }
 
 
-
-
+        /// <summary>
+        /// 每秒Tick数
+        /// </summary>
+        public int TPS { get; set; } = 20;
 
         /// <summary>
-        /// 世界向前演化一段时间
+        /// 每Tick性能消耗 ms数
         /// </summary>
-        /// <param name="seconds">向前演化的秒数</param>
-        /// <param name="dt">切片时间间隔</param>
-        /// <param name="multiThread">是否开启多线程</param>
-        public void AdvanceWorld(int seconds, Real dt, bool multiThread)
+        public float MTPS { get; internal set; } = 0.0f;
+
+        /// <inheritdoc/>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 执行一个Tick
+        /// </summary>
+        private void Tick() => World.Step(1.0f / TPS, false);
+
+        bool workFlag = false;
+        /// <summary>
+        /// 工作线程
+        /// </summary>
+        private void Work()
         {
-            int total = (int)(seconds / dt);
-            for (int i = 0; i < total; i++)
-                World.Step(dt, multiThread);
+            long lastTick = 0;
+            Stopwatch stopwatch = new Stopwatch();
+            while (workFlag)
+            {
+                UpdateObject(lastTick, stopwatch.ElapsedMilliseconds);
+                lastTick = stopwatch.ElapsedMilliseconds;
+                Tick();
+                foreach (var body in World.RigidBodies)
+                {
+                    if (body.Contacts.Count > 0)
+                    {
+                        var another = body.Contacts.First().Body2;
+                        OnCollision(body, another);
+                        break;
+                    }
+                }
+                while ((stopwatch.ElapsedMilliseconds - lastTick) < (1000 / TPS))
+                {
+                }
+            }
         }
-    }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class T
-    {
-        static void Test()
+        private void OnCollision(RigidBody body, RigidBody another)
         {
+            throw new NotImplementedException();
+        }
 
+        /// <summary>
+        /// 更新对象
+        /// </summary>
+        private void UpdateObject(long lastTick, long thisTick)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static World GetDefaltWorld()
+        {
             World.Capacity capacity = new World.Capacity
             {
                 BodyCount = 1_000,
                 ConstraintCount = 1_000,
                 ContactCount = 1_000,
-                SmallConstraintCount = 1_000
+                SmallConstraintCount = 1_000,
             };
-            // 创建World对象
             World world = new World(capacity);
 
-            // 关闭重力
-            world.Gravity = JVector.Zero;
+            world.SpeculativeRelaxationFactor = 0.1f; //预测接触减速
+            world.DynamicTree.Filter = World.DefaultDynamicTreeFilter; //默认动态树过滤器, 单个刚体忽略碰撞
+            world.Gravity = JVector.Zero;//关闭重力
+            world.EnableAuxiliaryContactPoints = false; //关闭辅助接触点
+            world.SubstepCount = 1; //不采用子步
+            world.SolverIterations = (6, 4);//求解器精度等级
+            world.BroadPhaseFilter = null; //无碰撞过滤器 TODO: 说不定有呢
 
-            // 创建第一个长方体的形状和刚体
-            RigidBodyShape boxShape1 = new BoxShape(1.0f, 1.0f, 1.0f);
-            RigidBody body1 = world.CreateRigidBody();
-            body1.Position = new JVector(-2.0f, 0.0f, 0.0f);
-            body1.Velocity = new JVector(1.0f, 0.0f, 0.0f);
-            body1.Friction = 0.0f;
-            body1.Restitution = 1.0f;
-
-            // 创建第二个长方体的形状和刚体
-            RigidBodyShape boxShape2 = new BoxShape(1.0f, 1.0f, 1.0f);
-            RigidBody body2 = world.CreateRigidBody();
-            body2.Position = new JVector(2.0f, 0.0f, 0.0f);
-            body2.Velocity = new JVector(-1.0f, 0.0f, 0.0f);
-            body2.Friction = 0.0f;
-            body2.Restitution = 1.0f;
-
-            // 运行模拟
-            for (int i = 0; i < 100; i++)
-            {
-                world.Step(1.0f / 60.0f); // 每步模拟1/60秒
-                Console.WriteLine($"Step {i + 1}:");
-                Console.WriteLine($"Body1 Position: {body1.Position}");
-                Console.WriteLine($"Body2 Position: {body2.Position}");
-            }
+            return world;
         }
     }
-
 }
